@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang='ro'>
+<head>
+<meta charset='UTF-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+<title>Ziarul Meu Personal</title>
+<style>
+body { font-family: 'Segoe UI', sans-serif; background-color: #f4f7f6; color: #333; margin: 0; padding: 20px; display: none; }
+.container { max-width: 1100px; margin: 0 auto; }
+header { text-align: center; padding: 30px 0; border-bottom: 3px solid #3498db; margin-bottom: 30px; }
+h1 { margin: 0; color: #2c3e50; font-size: 2.5rem; }
+.date { color: #7f8c8d; margin-top: 5px; font-style: italic; }
+.category-section { margin-bottom: 40px; }
+h2 { color: #2c3e50; border-left: 5px solid #3498db; padding-left: 10px; margin-bottom: 20px; }
+.news-card { background: white; padding: 20px; margin-bottom: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
+.news-card h3 { margin-top: 0; color: #2980b9; font-size: 1.3rem; }
+.source { font-size: 0.85rem; color: #e67e22; font-weight: bold; }
+.news-card p { color: #555; line-height: 1.5; font-size: 0.95rem; }
+.read-btn { display: inline-block; background-color: #3498db; color: white; padding: 8px 15px; text-decoration: none; border-radius: 4px; font-size: 0.9rem; font-weight: bold; }
+.error { background-color: #fde8e8; color: #e74c3c; padding: 15px; border-radius: 5px; }
+</style>
+<script>
+function verificaParola() {
+    var parolaCorecta = 'Stiri2026';
+    var incercare = prompt('🔒 Acest site este privat. Introdu parola pentru a citi știrile:');
+    if (incercare === parolaCorecta) {
+        document.documentElement.style.display = 'block';
+        document.body.style.display = 'block';
+    } else {
+        alert('❌ Parolă incorectă! Acces interzis.');
+        window.location.href = 'https://www.google.com';
+    }
+}
+window.onload = verificaParola;
+</script>
+</head>
+<body>
+<div class='container'>
+<header>
+<h1>☕ Briefingul Tău Personal de Știri</h1>
+<div class='date'>Actualizat automat la data de: 21 May 2026</div>
+</header>
+<div class='category-section'><h2>📰 Știri din România</h2><div class='news-grid'><div class='news-card'><h3>Directorul televiziunii din Moldova demisionează după scandalul legat de Eurovision</h3><span class='source'>📍 Mediafax.ro</span><p>Directorul televiziunii din Republica Moldova, Vlad Țurcanu, și-a anunțat luni demisia. Decizia vine după ce duminică un val de reacții negative a apărut în urma votului pe care juriul de la Chișinău l-a dat României în finala Eurovision.</p><a href='https://www.mediafax.ro/social/directorul-televiziunii-din-moldova-demisioneaza-dupa-scandalul-legat-de-eurovision-23739035' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>Ambasada SUA laudă performanța Ford Craiova după producția automobilului Puma cu numărul un milion</h3><span class='source'>📍 Mediafax.ro</span><p>Ambasada Statelor Unite la București a transmis un mesaj de felicitare pentru Ford România după atingerea pragului de un milion de automobile Ford Puma fabricate la uzina din Craiova.</p><a href='https://www.mediafax.ro/social/ambasada-sua-lauda-performanta-ford-craiova-dupa-productia-automobilului-puma-cu-numarul-un-milion-23740341' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>Maia Sandu intervine în scandalul votului de la Eurovision. Ce a spus despre punctajul dat de juriul din Moldova prestației României</h3><span class='source'>📍 Mediafax.ro</span><p>Președinta Republicii Moldova, Maia Sandu, a reacționat marți în cazul scandalului punctajului oferit de Republica Moldova prestației Românei în finala Eurovision 2026. „Eu cred că nu trebuie să permitem ca ceva sau cineva să deterioreze relațiile dintre țări…</p><a href='https://www.mediafax.ro/cultura-media/maia-sandu-intervine-in-scandalul-votului-de-la-eurovision-ce-a-spus-despre-punctajul-dat-de-juriul-din-moldova-prestatiei-romaniei-23739669' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>UE are curajul de a observa cu atenție și interes</h3><span class='source'>📍 Adevarul.ro</span><p>Cum se întâmplă de mult pre multe ori (cu rezultate evidente pentru credibilitatea instituțiilor europene) înalții responsabili de la Bruxelles lansează în spațiul public estimări grăbite care nu sunt reluate sau acceptate de Statele Membre.</p><a href='https://adevarul.ro/blogurile-adevarul/ue-are-curajul-de-a-observa-cu-atentie-si-interes-2530634.html' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>Nicușor Dan vrea să salveze PSD</h3><span class='source'>📍 Zoso.ro</span><p>Întâi de toate, două știri rapide: Sebastian Ghiță apare în discuțiile unor spioni ruși, pentru cine avea dubii cine este omul de fapt: The documents discussed ideas to use Romanian activist Sebastian Ghiță to claim that Sandu’s administration had tried to bl…</p><a href='https://zoso.ro/nicusor-vrea-salveze/' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>SONDAJ INSCOP: PNL depășește PSD în intențiile de vot pentru alegeri parlamentare. Ce procente au AUR și USR</h3><span class='source'>📍 Digi24.ro</span><p>SONDAJ INSCOP: PNL depășește PSD în intențiile de vot pentru alegeri parlamentare. Ce procente au AUR și USR</p><a href='https://www.digi24.ro/stiri/actualitate/politica/sondaj-inscop-pnl-depaseste-psd-in-intentiile-de-vot-pentru-alegeri-parlamentare-ce-procente-au-aur-si-usr-3773849' target='_blank' class='read-btn'>Citește articolul →</a></div></div></div><div class='category-section'><h2>📰 Știri Internaționale</h2><div class='news-grid'><div class='news-card'><h3>California's Wildfire Season Is Already Overactive</h3><span class='source'>📍 Wired</span><p>Major fires are threatening homes and ecologically sensitive areas following a hot, dry winter.</p><a href='https://www.wired.com/story/californias-wildfire-season-already-overactive/' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>A Danish Couple’s Maverick African Research Finds Its Moment in RFK Jr.’s Vaccine Policy</h3><span class='source'>📍 Wired</span><p>The work of Peter Aaby and Christine Stabell Benn has long been controversial. Until Robert F. Kennedy Jr. became US health policy chief, most vaccine scientists tended to ignore it. Now they can’t.</p><a href='https://www.wired.com/story/a-danish-couples-maverick-african-research-finds-its-moment-in-rfk-jrs-vaccine-policy/' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>Stearns and Foster Promo Codes: $300 Off in May</h3><span class='source'>📍 Wired</span><p>Find the latest Stearns and Foster coupons, promo codes, and deals. Score free accessories, foundations, and enjoy special savings on luxury mattresses.</p><a href='https://www.wired.com/story/stearns-and-foster-promo-code/' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>Mercedes’ electric AMG GT 4-door coupe can go 0-60 in 2 seconds</h3><span class='source'>📍 The Verge</span><p>The era of ultra-high performance Mercedes EVs is here. The German automaker finally revealed its new super sedan, the AMG GT 4-door coupe, with technology borrowed from the automaker's XX concept that last year made history by driving 24,901 miles in under 8…</p><a href='https://www.theverge.com/news/934037/mercedes-amg-gt-four-door-coupe-ev-specs' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>Exclusive: Jonah Peretti explains why he sold BuzzFeed</h3><span class='source'>📍 The Verge</span><p>Today, I’m talking with Jonah Peretti, who is, technically, the CEO of BuzzFeed — although that will be coming to an end very soon. Just days before we spoke, Jonah agreed to sell 52 percent of BuzzFeed for a total of $120 million to Byron Allen, who owns The…</p><a href='https://www.theverge.com/podcast/932154/peretti-allen-buzzfeed-ai-slop-social-media' target='_blank' class='read-btn'>Citește articolul →</a></div><div class='news-card'><h3>We react to Google I/O 2026</h3><span class='source'>📍 The Verge</span><p>What better way to unwind from a two-hour-long keynote presentation than to pour over the weirdest and wildest details, from a Gmail bot you can converse with to DeepMind's leader saying the singularity is near. The Vergecast went live right after the show, w…</p><a href='https://www.theverge.com/podcast/934202/we-react-to-google-i-o-2026' target='_blank' class='read-btn'>Citește articolul →</a></div></div></div>
+</div>
+</body>
+</html>
