@@ -1,0 +1,30 @@
+name: Trimite Stirile Zilnice
+
+on:
+  schedule:
+    # Rulează în fiecare zi la ora 05:00 UTC (adică ora 08:00 a României)
+    - cron: '0 5 * * *'
+  workflow_dispatch: # Îți permite să pornești robotul și manual, de test
+
+jobs:
+  run-bot:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descarcă codul din repository
+        uses: actions/checkout@v4
+
+      - name: Configurează Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.10'
+
+      - name: Instalează librăriile necesare
+        run: pip install -r requirements.txt
+
+      - name: Rulează scriptul de știri
+        env:
+          NEWS_API_KEY: ${{ secrets.NEWS_API_KEY }}
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_PASSWORD: ${{ secrets.EMAIL_PASSWORD }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+        run: python news_bot.py
