@@ -1,56 +1,45 @@
 import os
 import requests
-import smtplib
 from datetime import datetime, timedelta
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
 
-# Preluăm datele secrete din setările securizate ale GitHub (le configurăm la Pasul 3)
+# Preluăm doar cheia API (nu mai avem nevoie de parole de mail)
 API_KEY = os.environ.get("NEWS_API_KEY")
-EMAIL_EXPEDIATOR = os.environ.get("EMAIL_FROM")
-EMAIL_PAROLA = os.environ.get("EMAIL_PASSWORD")
-EMAIL_DESTINATAR = os.environ.get("EMAIL_TO")
 
 ieri = (datetime.now() - timedelta(days=1)).strftime('%Y-%m-%d')
+data_azi = datetime.now().strftime('%Y-%m-%d')
+nume_fisier = f"stiri-{data_azi}.md"
 
 def obtine_stiri(interogare, categorie_nume):
     url = f"https://newsapi.org/v2/everything?q={interogare}&from={ieri}&sortBy=popularity&language=ro&apiKey={API_KEY}"
     raspuns = requests.get(url).json()
-    structura_stiri = f"<h2>📰 Categoria: {categorie_nume}</h2><ul>"
+    
+    text_stiri = f"### 📰 {categorie_nume}\n\n"
     
     if "articles" in raspuns and len(raspuns["articles"]) > 0:
-        for articol in raspuns["articles"][:3]:
+        for articol in raspuns["articles"][:4]: # Luăm top 4 știri
             titlu = articol["title"]
             sursa = articol["source"]["name"]
             link = articol["url"]
             descriere = articol["description"] if articol["description"] else "Fără descriere disponibilă."
-            structura_stiri += f"<li><a href='{link}'><b>{titlu}</b></a> <small>({sursa})</small><br>{descriere}</li>"
+            
+            text_stiri += f"- **[{titlu}]({link})** *({sursa})*\n"
+            text_stiri += f"  {descriere}\n\n"
     else:
-        structura_stiri += "<li>Nu s-au găsit știri importante în ultimele 24 de ore.</li>"
+        text_stiri += "- Nu s-au găsit știri importante în ultimele 24 de ore.\n\n"
     
-    structura_stiri += "</ul><hr style='border:0; border-top:1px solid #eee;'>"
-    return structura_stiri
+    return text_stiri
 
-corp_email_html = "<html><body>"
-corp_email_html += f"<h1>☕ Rezumatul tău de știri - {datetime.now().strftime('%d %B %Y')}</h1><br>"
-corp_email_html += obtine_stiri("romania OR stiri", "Generale România")
-corp_email_html += obtine_stiri("tehnologie OR gadget OR „it”", "Tech / Tehnologie")
-corp_email_html += obtine_stiri("economie OR bursa OR bani OR afaceri", "Economie & Business")
-corp_email_html += obtine_stiri("„inteligență artificială” OR ChatGPT OR „AI”", "Inteligență Artificială (IA)")
-corp_email_html += "</body></html>"
+# Construim conținutul fișierului
+continut_md = f"# ☕ Rezumatul tău de știri - {datetime.now().strftime('%d %B %Y')}\n"
+continut_md += "*Generat automat în fiecare dimineață.*\n\n---\n\n"
 
-msg = MIMEMultipart('alternative')
-msg['Subject'] = f"📰 Briefing Zilnic: {datetime.now().strftime('%d/%m/%Y')}"
-msg['From'] = EMAIL_EXPEDIATOR
-msg['To'] = EMAIL_DESTINATAR
-msg.attach(MIMEText(corp_email_html, 'html', 'utf-8'))
+continut_md += obtine_stiri("romania OR stiri", "Generale România")
+continut_md += obtine_stiri("tehnologie OR gadget OR „it”", "Tech / Tehnologie")
+continut_md += obtine_stiri("economie OR bursa OR bani OR afaceri", "Economie & Business")
+continut_md += obtine_stiri("„inteligență artificială” OR ChatGPT OR „AI”", "Inteligență Artificială (IA)")
 
-try:
-    server = smtplib.SMTP('smtp.gmail.com', 587)
-    server.starttls()
-    server.login(EMAIL_EXPEDIATOR, EMAIL_PAROLA)
-    server.sendmail(EMAIL_EXPEDIATOR, EMAIL_DESTINATAR, msg.as_string())
-    server.quit()
-    print("Email trimis cu succes!")
-except Exception as e:
-    print(f"Eroare: {e}")
+# Salvăm textul într-un fișier local pe serverul GitHub (va fi urcat în repository de către flux)
+with open(nume_fisier, "w", encoding="utf-8") as f:
+    f.write(continut_md)
+
+print(f"Fișierul {nume_fisier} a fost creat cu succes local!")
